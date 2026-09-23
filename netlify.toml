@@ -1,0 +1,15 @@
+[build]
+  # Repo root is the project root, so no `base` override is needed.
+  command = "pnpm vite build"
+  # Vite writes the client bundle here (see `build.outDir` in vite.config.ts).
+  publish = "dist/public"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# The client is a wouter single-page app: serve index.html for any path that
+# isn't a built asset so routes like /app/discover resolve on a hard load.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
